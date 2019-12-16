@@ -15,3 +15,12 @@ code {
 .dropdown-autocomplete {
   display: block;
 }
+
+.dropdown-item {
+  min-height: 4em;
+  border-bottom: 1px solid #ececec;
+}
+
+.tag {
+  margin-right: 0.5em;
+}
