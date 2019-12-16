@@ -7,8 +7,9 @@ export default class Autocomplete extends React.Component {
   }
 
   onKeyPress = async (event) => {
+    this.setState({ loading: true });
     let results = await this.props.getResults(event.target.value);
-    this.setState({ matches: results, selected: 0 });
+    this.setState({ matches: results, selected: 0, loading: false });
   }
 
   select = (selected) => {
@@ -47,7 +48,7 @@ export default class Autocomplete extends React.Component {
     return (
     <div>
       <div className="dropdown is-active dropdown-autocomplete">
-        <div className="dropdown-trigger">
+        <div className={`dropdown-trigger control ${this.state.loading && 'is-loading'}`}>
           <input className="input is-rounded" placeholder="Begin typing to search" onChange={this.onKeyPress}/>
         </div>
           {this.state.matches && this.state.matches.length > 0 &&
